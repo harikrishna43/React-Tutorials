@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <title>Counter</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Counter extends React.Component {
+
+            handleRunClick = () => {
+                const startTime = this.state.count;
+
+                this.timer = setInterval(() =>
+                    //startTime = startTime - 1;
+                    this.increament()
+                )
+                console.log(this.timer);
+                console.log(this.state.count);
+            }
+            increament = () => {
+                console.log(this.state.upToValue)
+                if (this.state.count < this.state.upToValue) {
+                    const startTime = this.state.count;
+                    this.setState({ count: startTime + 1 });
+                }
+            }
+            state = { count: 0, upToValue: 100 };
+            render() {
+
+                const { count, upToValue } = this.state;
+                return (<div>
+                    <input type='text' value={upToValue} />
+                    <button onClick={this.handleRunClick}>Start</button>
+                    <button>Stop</button>
+                    <h3>{count}</h3>
+                </div>)
+            };
+        }
+        const rootElement = document.getElementById('root');
+        const element = <Counter count={100} />//React.createElement('div', { className: 'container', children: 'Hello World' });
+        const counterElement = (<Counter />);
+
+        ReactDOM.render(element, rootElement);
+
+        function increament() { setState({ eventCount: state.Count + 1 }) }
+
+    </script>
+</body>
+
+</html>
